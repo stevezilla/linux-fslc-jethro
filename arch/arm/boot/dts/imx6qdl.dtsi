@@ -80,10 +80,6 @@
 		interrupt-parent = <&intc>;
 		ranges;
 
-		caam_sm: caam-sm@00100000 {
-			compatible = "fsl,imx6q-caam-sm";
-			reg = <0x00100000 0x3fff>;
-		};
 
 		dma_apbh: dma-apbh@00110000 {
 			compatible = "fsl,imx6q-dma-apbh", "fsl,imx28-dma-apbh";
@@ -98,11 +94,6 @@
 			clocks = <&clks IMX6QDL_CLK_APBH_DMA>;
 		};
 
-		irq_sec_vio: caam_secvio {
-			compatible = "fsl,imx6q-caam-secvio";
-			interrupts = <0 20 0x04>;
-			secvio_src = <0x8000001d>;
-		};
 
 		gpmi: gpmi-nand@00112000 {
 			compatible = "fsl,imx6q-gpmi-nand";
@@ -416,67 +407,6 @@
 				reg = <0x0207c000 0x4000>;
 			};
 
-			pwm1: pwm@02080000 {
-				#pwm-cells = <2>;
-				compatible = "fsl,imx6q-pwm", "fsl,imx27-pwm";
-				reg = <0x02080000 0x4000>;
-				interrupts = <0 83 IRQ_TYPE_LEVEL_HIGH>;
-				clocks = <&clks IMX6QDL_CLK_IPG>,
-					 <&clks IMX6QDL_CLK_PWM1>;
-				clock-names = "ipg", "per";
-			};
-
-			pwm2: pwm@02084000 {
-				#pwm-cells = <2>;
-				compatible = "fsl,imx6q-pwm", "fsl,imx27-pwm";
-				reg = <0x02084000 0x4000>;
-				interrupts = <0 84 IRQ_TYPE_LEVEL_HIGH>;
-				clocks = <&clks IMX6QDL_CLK_IPG>,
-					 <&clks IMX6QDL_CLK_PWM2>;
-				clock-names = "ipg", "per";
-			};
-
-			pwm3: pwm@02088000 {
-				#pwm-cells = <2>;
-				compatible = "fsl,imx6q-pwm", "fsl,imx27-pwm";
-				reg = <0x02088000 0x4000>;
-				interrupts = <0 85 IRQ_TYPE_LEVEL_HIGH>;
-				clocks = <&clks IMX6QDL_CLK_IPG>,
-					 <&clks IMX6QDL_CLK_PWM3>;
-				clock-names = "ipg", "per";
-			};
-
-			pwm4: pwm@0208c000 {
-				#pwm-cells = <2>;
-				compatible = "fsl,imx6q-pwm", "fsl,imx27-pwm";
-				reg = <0x0208c000 0x4000>;
-				interrupts = <0 86 IRQ_TYPE_LEVEL_HIGH>;
-				clocks = <&clks IMX6QDL_CLK_IPG>,
-					 <&clks IMX6QDL_CLK_PWM4>;
-				clock-names = "ipg", "per";
-			};
-
-			flexcan1: can@02090000 {
-				compatible = "fsl,imx6q-flexcan";
-				reg = <0x02090000 0x4000>;
-				interrupts = <0 110 IRQ_TYPE_LEVEL_HIGH>;
-				clocks = <&clks IMX6QDL_CLK_CAN1_IPG>,
-					 <&clks IMX6QDL_CLK_CAN1_SERIAL>;
-				clock-names = "ipg", "per";
-				stop-mode = <&gpr 0x34 28 0x10 17>;
-				status = "disabled";
-			};
-
-			flexcan2: can@02094000 {
-				compatible = "fsl,imx6q-flexcan";
-				reg = <0x02094000 0x4000>;
-				interrupts = <0 111 IRQ_TYPE_LEVEL_HIGH>;
-				clocks = <&clks IMX6QDL_CLK_CAN2_IPG>,
-					 <&clks IMX6QDL_CLK_CAN2_SERIAL>;
-				clock-names = "ipg", "per";
-				stop-mode = <&gpr 0x34 29 0x10 18>;
-				status = "disabled";
-			};
 
 			gpt: gpt@02098000 {
 				compatible = "fsl,imx6q-gpt", "fsl,imx31-gpt";
@@ -487,82 +417,7 @@
 				clock-names = "ipg", "per";
 			};
 
-			gpio1: gpio@0209c000 {
-				compatible = "fsl,imx6q-gpio", "fsl,imx35-gpio";
-				reg = <0x0209c000 0x4000>;
-				interrupts = <0 66 IRQ_TYPE_LEVEL_HIGH>,
-					     <0 67 IRQ_TYPE_LEVEL_HIGH>;
-				gpio-controller;
-				#gpio-cells = <2>;
-				interrupt-controller;
-				#interrupt-cells = <2>;
-			};
 
-			gpio2: gpio@020a0000 {
-				compatible = "fsl,imx6q-gpio", "fsl,imx35-gpio";
-				reg = <0x020a0000 0x4000>;
-				interrupts = <0 68 IRQ_TYPE_LEVEL_HIGH>,
-					     <0 69 IRQ_TYPE_LEVEL_HIGH>;
-				gpio-controller;
-				#gpio-cells = <2>;
-				interrupt-controller;
-				#interrupt-cells = <2>;
-			};
-
-			gpio3: gpio@020a4000 {
-				compatible = "fsl,imx6q-gpio", "fsl,imx35-gpio";
-				reg = <0x020a4000 0x4000>;
-				interrupts = <0 70 IRQ_TYPE_LEVEL_HIGH>,
-					     <0 71 IRQ_TYPE_LEVEL_HIGH>;
-				gpio-controller;
-				#gpio-cells = <2>;
-				interrupt-controller;
-				#interrupt-cells = <2>;
-			};
-
-			gpio4: gpio@020a8000 {
-				compatible = "fsl,imx6q-gpio", "fsl,imx35-gpio";
-				reg = <0x020a8000 0x4000>;
-				interrupts = <0 72 IRQ_TYPE_LEVEL_HIGH>,
-					     <0 73 IRQ_TYPE_LEVEL_HIGH>;
-				gpio-controller;
-				#gpio-cells = <2>;
-				interrupt-controller;
-				#interrupt-cells = <2>;
-			};
-
-			gpio5: gpio@020ac000 {
-				compatible = "fsl,imx6q-gpio", "fsl,imx35-gpio";
-				reg = <0x020ac000 0x4000>;
-				interrupts = <0 74 IRQ_TYPE_LEVEL_HIGH>,
-					     <0 75 IRQ_TYPE_LEVEL_HIGH>;
-				gpio-controller;
-				#gpio-cells = <2>;
-				interrupt-controller;
-				#interrupt-cells = <2>;
-			};
-
-			gpio6: gpio@020b0000 {
-				compatible = "fsl,imx6q-gpio", "fsl,imx35-gpio";
-				reg = <0x020b0000 0x4000>;
-				interrupts = <0 76 IRQ_TYPE_LEVEL_HIGH>,
-					     <0 77 IRQ_TYPE_LEVEL_HIGH>;
-				gpio-controller;
-				#gpio-cells = <2>;
-				interrupt-controller;
-				#interrupt-cells = <2>;
-			};
-
-			gpio7: gpio@020b4000 {
-				compatible = "fsl,imx6q-gpio", "fsl,imx35-gpio";
-				reg = <0x020b4000 0x4000>;
-				interrupts = <0 78 IRQ_TYPE_LEVEL_HIGH>,
-					     <0 79 IRQ_TYPE_LEVEL_HIGH>;
-				gpio-controller;
-				#gpio-cells = <2>;
-				interrupt-controller;
-				#interrupt-cells = <2>;
-			};
 
 			kpp: kpp@020b8000 {
 				reg = <0x020b8000 0x4000>;
